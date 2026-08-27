@@ -1,0 +1,35 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Participants collection - public can register and read
+    match /participants/{participantId} {
+      allow read, write: if true;
+    }
+
+    // Schools collection - public can read and update lottery/info
+    match /schools/{schoolId} {
+      allow read, write: if true;
+    }
+
+    // Judges collection - judges and admin
+    match /judges/{judgeId} {
+      allow read, write: if true;
+    }
+
+    // Evaluations collection - judge scoring submissions
+    match /evaluations/{evalId} {
+      allow read, write: if true;
+    }
+
+    // Categories collection
+    match /categories/{categoryId} {
+      allow read, write: if true;
+    }
+
+    // App config collection (event settings, schedule)
+    match /app_config/{configId} {
+      allow read, write: if true;
+    }
+  }
+}

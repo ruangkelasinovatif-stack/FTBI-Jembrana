@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #berita-acara-print-area, #berita-acara-print-area *,
+  #berita-acara-juara-umum-print-area, #berita-acara-juara-umum-print-area * {
+    visibility: visible;
+  }
+  #berita-acara-print-area,
+  #berita-acara-juara-umum-print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent !important;
+  }
+  @page {
+    size: A4 portrait;
+    margin: 6mm 10mm;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Sistem FTBI Sekolah Dasar Jembrana",
+  "description": "Sistem untuk memudahkan penyelenggaraan FTBI di tingkat gugus dan kecamatan",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

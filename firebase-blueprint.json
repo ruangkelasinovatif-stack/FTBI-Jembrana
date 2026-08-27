@@ -1,0 +1,129 @@
+{
+  "entities": {
+    "participants": {
+      "title": "Participant",
+      "description": "Student participant registration data for FTBI",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "registrationNo": { "type": "string" },
+        "lotNo": { "type": "number" },
+        "fullName": { "type": "string" },
+        "nisn": { "type": "string" },
+        "gender": { "type": "string", "enum": ["L", "P"] },
+        "schoolId": { "type": "string" },
+        "categoryId": { "type": "string" },
+        "grade": { "type": "string" },
+        "mentorName": { "type": "string" },
+        "mentorPhone": { "type": "string" },
+        "registeredAt": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["fullName", "schoolId", "categoryId", "gender"]
+    },
+    "schools": {
+      "title": "School",
+      "description": "Schools participating in FTBI",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "npsn": { "type": "string" },
+        "lotteryNumber": { "type": "number" },
+        "address": { "type": "string" },
+        "village": { "type": "string" },
+        "principalName": { "type": "string" },
+        "principalNip": { "type": "string" },
+        "contactPhone": { "type": "string" }
+      },
+      "required": ["name"]
+    },
+    "judges": {
+      "title": "Judge",
+      "description": "Judges assigned to competition categories",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "nip": { "type": "string" },
+        "schoolId": { "type": "string" },
+        "categoryId": { "type": "string" },
+        "role": { "type": "string" },
+        "isBackup": { "type": "boolean" },
+        "username": { "type": "string" },
+        "password": { "type": "string" },
+        "token": { "type": "string" }
+      },
+      "required": ["name", "categoryId"]
+    },
+    "evaluations": {
+      "title": "Evaluation",
+      "description": "Scoring evaluations submitted by judges",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "participantId": { "type": "string" },
+        "judgeId": { "type": "string" },
+        "judgeRole": { "type": "string" },
+        "scores": { "type": "object" },
+        "totalWeightedScore": { "type": "number" },
+        "notes": { "type": "string" },
+        "submittedAt": { "type": "string" },
+        "isSubstitute": { "type": "boolean" }
+      },
+      "required": ["participantId", "judgeId", "totalWeightedScore"]
+    },
+    "categories": {
+      "title": "Category",
+      "description": "Competition categories and scoring criteria",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "code": { "type": "string" },
+        "level": { "type": "string" },
+        "mode": { "type": "string" },
+        "description": { "type": "string" },
+        "criteria": { "type": "array" }
+      },
+      "required": ["name", "code"]
+    },
+    "app_config": {
+      "title": "AppConfig",
+      "description": "Global application configuration, event profile, and registration schedule",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "eventProfile": { "type": "object" },
+        "registrationSchedule": { "type": "object" },
+        "adminCredentials": { "type": "object" }
+      }
+    }
+  },
+  "firestore": {
+    "/participants/{participantId}": {
+      "schema": "participants",
+      "description": "Participant registrations"
+    },
+    "/schools/{schoolId}": {
+      "schema": "schools",
+      "description": "Master schools list"
+    },
+    "/judges/{judgeId}": {
+      "schema": "judges",
+      "description": "Assigned judges"
+    },
+    "/evaluations/{evalId}": {
+      "schema": "evaluations",
+      "description": "Judge scoring submissions"
+    },
+    "/categories/{categoryId}": {
+      "schema": "categories",
+      "description": "Competition categories"
+    },
+    "/app_config/{configId}": {
+      "schema": "app_config",
+      "description": "Global event settings"
+    }
+  }
+}
